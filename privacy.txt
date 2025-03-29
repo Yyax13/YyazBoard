@@ -1,0 +1,48 @@
+Política de Privacidade
+Última atualização: 28/03/2025
+
+1. Informações Gerais
+Este aplicativo ("YyazBoard") é um serviço interno para visualização de métricas de campanhas publicitárias, destinado a uso próprio.
+
+2. Dados Coletados
+2.1 Dados do Facebook Ads
+Coletamos: IDs de campanhas, métricas de desempenho (cliques, impressões, CTR), orçamentos e dados demográficos agregados (idade, gênero).
+
+Fonte: API oficial do Facebook Marketing.
+
+Propósito: Exibição em dashboards e geração de relatórios internos.
+
+2.2 Dados de Usuários
+Cookies: Usamos apenas cookies essenciais para autenticação.
+
+Login: Credenciais são gerenciadas pelo Facebook OAuth (não armazenamos senhas).
+
+3. Compartilhamento de Dados
+Não vendemos nem compartilhamos dados com terceiros.
+
+Dados são acessíveis apenas por:
+
+Administradores do aplicativo
+
+Colaboradores autorizados via Facebook Business Manager
+
+4. Segurança
+Criptografia: TLS/SSL em todas as comunicações.
+
+Armazenamento: Dados em cache por até 980 dias.
+
+Acesso: Restrito a tokens de API com permissões mínimas necessárias.
+
+5. Direitos do Usuário (GDPR/Lei LGPD)
+Você pode:
+
+Solicitar acesso aos dados coletados Yyax13@proton.me
+
+Pedir exclusão de dados históricos
+
+Revogar permissões via Facebook Settings
+
+6. Contato
+Para dúvidas sobre privacidade:
+
+Email: Yyax13@proton.me
