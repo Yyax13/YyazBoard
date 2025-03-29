@@ -1,0 +1,66 @@
+TERMOS DE SERVIÇO
+Última atualização: 27/03/2025
+
+1. Aceitação dos Termos
+Ao acessar o serviço "YyazBoard" em https://yyazboard.onrender.com, você concorda com estes Termos.
+
+2. Funcionalidades do Serviço
+Visualização de métricas de campanhas via Facebook Marketing API
+
+Geração de relatórios automáticos
+
+Ferramentas básicas de análise de desempenho
+
+3. Requisitos de Acesso
+3.1 Credenciais Necessárias:
+
+Conta ativa no Facebook Business Manager
+
+Permissões válidas para acessar os dados solicitados
+
+3.2 Restrições:
+
+Proibido uso para:
+
+Violação das Políticas da Meta
+
+Extração massiva de dados não autorizada
+
+4. Limitações de Responsabilidade
+4.1 Disponibilidade:
+
+Serviço sujeito a limites da API do Facebook (180 chamadas/hora)
+
+Podem ocorrer interrupções durante atualizações
+
+4.2 Dados:
+
+Não garantimos precisão absoluta das métricas (sujeitas à API do Facebook)
+
+5. Propriedade Intelectual
+5.1 Direitos do Dashboard:
+
+Código-fonte e interface são propriedade de Lucas de Moraes Claro
+
+5.2 Dados de Anúncios:
+
+Pertencem exclusivamente ao usuário/cliente
+
+6. Rescisão
+Podemos suspender acesso imediatamente se:
+
+Violar estes Termos
+
+Detectar uso fraudulento
+
+Solicitação do Facebook por violação de políticas
+
+7. Lei Aplicável
+Regido pelas leis do Brasil, com foro em Ibaiti-PR.
+
+8. Modificações
+Notificaremos alterações por:
+
+Email cadastrado
+
+Aviso no painel por 30 dias
