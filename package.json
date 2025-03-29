@@ -1,0 +1,25 @@
+{
+  "name": "yyazboard",
+  "version": "A0.0.1",
+  "description": "[![NextJS](https://img.shields.io/badge/Node.JS-green.svg)](https://nodejs.org/pt) [![MetaADS](https://img.shields.io/badge/MetaADS-blue.svg)](https://business.meta.com/) [![License](https://img.shields.io/badge/License-CC0%201.0-blue.svg)](https://creativecommons.org/publicdomain/zero/1.0/) [![Version](https://img.shields.io/badge/Version-A0.0.1-purple.svg)](https://github.com/seu-usuario/sua-biblioteca/releases/tag/v1.0.0) [![Version](https://img.shields.io/badge/Criador-Yyax13-purple.svg)](https://github.com/Yyax13)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "CC0-1.0",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "path": "^0.12.7",
+    "sanitize-html": "^2.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
