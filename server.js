@@ -34,6 +34,18 @@ app.get('/', (req, res) => {
 /*
 
 
+Stand-On
+
+
+*/
+
+app.get('/StandOn', (req, res) => {
+    res.status(200);
+    res.send('Site Ativo')
+})
+
+/*
+
 API
 
 
