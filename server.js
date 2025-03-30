@@ -12,6 +12,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = process.env.PORT || 3001;
 
+// Funções
+
 function clearHTML(BadString) {
     return sanitizeHtml(BadString, {
         allowedTags: [],
@@ -19,41 +21,29 @@ function clearHTML(BadString) {
     });
 }
 
-/*
-
-
-Páginas estaticas
-
-
-*/
+// Pags estaticas
 
 app.get('/', (req, res) => {
-    res.send("Página em desenvolvimento, se preferir você pode enviar uma request GET em /api/consulta com os parametros query username e userid")
+    res.send("Página em desenvolvimento, se preferir você pode enviar uma request GET em /api/consulta com os parametros query username e userid");
 });
 
-/*
-
-
-Stand-On
-
-
-*/
+// Stand On
 
 app.get('/StandOn', (req, res) => {
     res.status(200);
-    res.send('Site Ativo')
+    res.send('Site Ativo');
 })
 
-/*
-
-API
-
-
-*/
+// APIs
 
 app.get('/api/consulta', (req, res) => {
     const { username, userid } = req.query;
     res.send(`Olá ${clearHTML(username)}! O seu id é: ${clearHTML(userid)}`);
+});
+
+app.get('/api/consulta/:id', (req,res) => {
+    const uid = req.params.id;
+    res.send(`O seu id é ${uid}`);
 });
 
 app.listen(PORT, () => {
