@@ -4,7 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const sanitizeHtml = require('sanitize-html');
-const pool = require('./db')
+const pool = require('./db');
+const { isNumberObject } = require('util/types');
 
 const app = express();
 app.use(cors());
@@ -60,19 +61,22 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
 
 app.get('/api/consulta/:id', async (req,res) => {
     const uid = req.params.id;
-
-    (async () => {
-        try {
-            const { rows } = await pool.query(
-                'SELECT ID, UserName FROM usuarios WHERE ID = $1',
-                [uid]
-            );
-            res.status(201).json({ dados: rows[0] });
-        } catch(err) {
-            console.error("Ocorreu um erro durante a consulta: ", err)
-            res.status(500).json({ mensagem: 'Ocorreu um erro durante a consulta, verifique o console.', erro: err })
+    
+    if (isNumberObject(uid)){
+        (async () => {
+            try {
+                const { rows } = await pool.query(
+                    'SELECT ID, UserName FROM usuarios WHERE ID = $1',
+                    [uid]
+                );
+                res.status(201).json({ dados: rows[0] });
+            } catch(err) {
+                console.error("Ocorreu um erro durante a consulta: ", err)
+                res.status(500).json({ mensagem: 'Ocorreu um erro durante a consulta, verifique o console.', erro: err })
+            }
+        })();} else {
+            res.status(201).json({ mensagem: "Para a consulta ocorrer, o id deve ser um número inteiro diferente de 0"})
         }
-    })();
 });
 
 app.get('/api/cadastro', async (req, res) => {
