@@ -58,8 +58,10 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
             )
           `);
           console.log('Tabela criada com sucesso');
+          res.status(201).send("Tabela criada com sucesso")
         } catch(err) {
           console.error('Erro ao criar tabela:', err);
+          res.status(500).send("Erro ao criar tabela, consulte o console para mais informações")
         } finally {
           await pool.end();
         }
