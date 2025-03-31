@@ -37,16 +37,6 @@ app.get('/StandOn', (req, res) => {
 
 // APIs
 
-app.get('/api/consulta', (req, res) => {
-    const { username, userid } = req.query;
-    res.send(`Olá ${clearHTML(username)}! O seu id é: ${clearHTML(userid)}`);
-});
-
-app.get('/api/consulta/:id', (req,res) => {
-    const uid = req.params.id;
-    res.send(`O seu id é ${uid}`);
-});
-
 app.get('/database/admin/criar/tabela', async (req, res) => {
     (async () => {
         try {
@@ -67,6 +57,16 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
         }
       })();
 })
+
+app.get('/api/consulta', (req, res) => {
+    const { username, userid } = req.query;
+    res.send(`Olá ${clearHTML(username)}! O seu id é: ${clearHTML(userid)}`);
+});
+
+app.get('/api/consulta/:id', (req,res) => {
+    const uid = req.params.id;
+    res.send(`O seu id é ${uid}`);
+});
 
 app.get('/api/cadastro', async (req, res) => {
     const { uname, upass } = req.query;
