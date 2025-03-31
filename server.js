@@ -67,7 +67,7 @@ app.get('/api/consulta/:id', async (req,res) => {
                 'SELECT * FROM usuarios WHERE ID = $1',
                 [uid]
             );
-            res.status(201).json({ usuario: [rows] });
+            res.status(201).json({id: rows[0], usuario: rows[1] });
         } catch(err) {
             console.error("Ocorreu um erro durante a consulta: ", err)
             res.status(500).json({ mensagem: 'Ocorreu um erro durante a consulta, verifique o console.', erro: err })
