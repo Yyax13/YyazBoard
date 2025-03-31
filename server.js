@@ -25,7 +25,7 @@ function clearHTML(BadString) {
 // Pags estaticas
 
 app.get('/', (req, res) => {
-    res.send("Página em desenvolvimento, se preferir você pode enviar uma request GET em /api/consulta com os parametros query username e userid");
+    res.send("Página em desenvolvimento, se preferir você pode enviar uma request GET em /api/consulta/SEUIDAQUI se você não possuir um id, teste com o ID 1");
 });
 
 // Stand On
