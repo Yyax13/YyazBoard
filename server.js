@@ -60,7 +60,7 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
 })
 
 app.get('/api/consulta/:id', async (req,res) => {
-    const uid = req.params.id;
+    const uid = Numer(req.params.id);
     
     if (isNumberObject(uid)){
         (async () => {
