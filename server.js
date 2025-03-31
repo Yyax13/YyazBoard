@@ -58,13 +58,24 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
       })();
 })
 
-app.get('/api/consulta', (req, res) => {
-    const { username, userid } = req.query;
-    res.send(`Olá ${clearHTML(username)}! O seu id é: ${clearHTML(userid)}`);
-});
-
 app.get('/api/consulta/:id', (req,res) => {
     const uid = req.params.id;
+
+    async () => {
+        try {
+            const { rows } = await pool.query(
+                'SELECT * FROM usuarios WHERE ID = $1',
+                [uid]
+            );
+            res.status(201).json({ usuario: [
+                'UserID' = rows[0],
+                'UserName' = rows[1]
+            ] });
+        } catch(err) {
+            console.error("Ocorreu um erro durante a consulta: ", err)
+            res.status(500).json({ mensagem: 'Ocorreu um erro durante a consulta, verifique o console.', erro: err })
+        }
+    }
     res.send(`O seu id é ${uid}`);
 });
 
