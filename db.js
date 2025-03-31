@@ -1,32 +1,29 @@
 require('dotenv').config();
-const mysql = require('mysql2/promise');
+const { Pool } = require('pg');
 
-const pool = mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    port: 3306,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASS,
-    database: process.env.MYSQL_DB_USERS,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-    connectTimeout: 10000
+const pool = new Pool({
+    host: process.env.PGSQL_HOST,
+    port: process.env.PG_PORT,
+    user: process.env.PGSQL_USER,
+    password: process.env.PGSQL_PASS,
+    database: process.env.PGSQL_DB_USERS,
+    max: 10,
+    connectionTimeoutMillis: 10000,
+    allowExitOnIdle: true,
+    idleTimeoutMillis: 30000
 });
 
 async function testConnection() {
-    let conn;
+    let client;
     try {
-        conn = await pool.getConnection();
+        client = await pool.connect();
         console.log('CONEXÃO BEM SUCEDIDA');
-
-        const [dbs] = await conn.query('SHOW DATABASES');
-        console.log('DBs disponiveis: ', dbs.map(d => d.Database));
-
+        
     } catch(err) {
         console.error("CONEXÃO MAL SUCEDIDA", err.stack || err);
         console.log(err.code)
     } finally {
-        if (conn) conn.release();
+        if (client) client.release();
     }
 }
 

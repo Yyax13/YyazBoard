@@ -47,17 +47,36 @@ app.get('/api/consulta/:id', (req,res) => {
     res.send(`O seu id é ${uid}`);
 });
 
+app.get('/database/admin/criar/tabela', async (req, res) => {
+    (async () => {
+        try {
+          await pool.query(`
+            CREATE TABLE IF NOT EXISTS usuarios (
+              ID SERIAL PRIMARY KEY,
+              UserName VARCHAR(125) NOT NULL,
+              UserPass VARCHAR(255) NOT NULL
+            )
+          `);
+          console.log('Tabela criada com sucesso');
+        } catch(err) {
+          console.error('Erro ao criar tabela:', err);
+        } finally {
+          await pool.end();
+        }
+      })();
+})
+
 app.get('/api/cadastro', async (req, res) => {
     const { uname, upass } = req.query;
     const username = clearHTML(uname);
     const userpassword = clearHTML(upass)
 
     try {
-        const [resultado] = await pool.query(
-            'INSERT INTO usuarios (UserName, UserPass) VALUES (?, ?)',
+        const { rows } = await pool.query(
+            'INSERT INTO usuarios (UserName, UserPass) VALUES ($1, $2) RETURNING ID',
             [username, userpassword]
         );
-        res.status(201).json({ id: resultado.insertId });
+        res.status(201).json({ id: rows[0].id });
     } catch (err) {
         console.log(err);
         res.status(500).json({ mensagem: 'Ocorreu um erro durante o cadastro, consulte o console de desenvolvedor.', erro: err })
