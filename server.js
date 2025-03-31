@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const sanitizeHtml = require('sanitize-html');
+const pool = require('./db')
 
 const app = express();
 app.use(cors());
@@ -44,6 +45,23 @@ app.get('/api/consulta', (req, res) => {
 app.get('/api/consulta/:id', (req,res) => {
     const uid = req.params.id;
     res.send(`O seu id é ${uid}`);
+});
+
+app.get('/api/cadastro', async (req, res) => {
+    const { uname, upass } = req.query;
+    const username = clearHTML(uname);
+    const userpassword = clearHTML(upass)
+
+    try {
+        const [resultado] = await pool.query(
+            'INSERT INTO usuarios (UserName, UserPass) VALUES (?, ?)',
+            [username, userpassword]
+        );
+        res.status(201).json({ id: resultado.insertId });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ mensagem: 'Ocorreu um erro durante o cadastro, consulte o console de desenvolvedor.', erro: err })
+    }
 });
 
 app.listen(PORT, () => {
