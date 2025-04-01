@@ -1,10 +1,12 @@
 require('dotenv').config(); //puxa dados do arquivo .env
 const axios = require('axios');
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
 const path = require('path');
 const sanitizeHtml = require('sanitize-html');
 const pool = require('./db');
+const validatePass = require('./ViewPass');
 const { isNumberObject } = require('util/types');
 
 const app = express();
@@ -13,6 +15,15 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = process.env.PORT || 3001;
+
+// Cookies
+
+app.use(session({
+    secret: 'Segredo',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: true}
+}));
 
 // Funções
 
@@ -29,10 +40,14 @@ app.get('/', (req, res) => {
     res.send("Página em desenvolvimento, se preferir você pode enviar uma request GET em /api/consulta/SEUIDAQUI se você não possuir um id, teste com o ID 1");
 });
 
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'))
+})
+
 // Stand On
 
 app.get('/StandOn', (req, res) => {
-    res.status(201).json({ Status: 'ON', Mensagem: 'COD 200'})
+    res.status(200).json({ Status: 'ON', Mensagem: 'COD 200'})
 })
 
 // APIs
@@ -74,7 +89,7 @@ app.get('/api/consulta/:id', async (req,res) => {
                 res.status(500).json({ mensagem: 'Ocorreu um erro durante a consulta, verifique o console.', erro: err })
             }
         })();} else {
-            res.status(201).json({ mensagem: "Para a consulta ocorrer, o id deve ser um número inteiro diferente de 0"})
+            res.status(500).json({ mensagem: "Para a consulta ocorrer, o id deve ser um número inteiro diferente de 0"})
         }
 });
 
@@ -93,6 +108,30 @@ app.get('/api/cadastro', async (req, res) => {
         console.log(err);
         res.status(500).json({ mensagem: 'Ocorreu um erro durante o cadastro, consulte o console de desenvolvedor.', erro: err })
     }
+});
+
+app.get('/sucesso', (req, res) => {
+    const Acesso = req.query.login;
+
+    if (Acesso = 'liberado') {
+        res.status(200)
+    }
+})
+
+app.post('/api/validar', async (req, res) => {
+    const UserFromUser = req.body.user;
+    const PassFromUser = req.body.passwd;
+
+    const [FromUserData] = [UserFromUser, PassFromUser];
+
+    const AuthResult = validatePass(FromUserData);
+    if (AuthResult[0]) {
+        req.session.userId = AuthResult[2];
+        res.status(200).json({ sucess: true, RedirectTo: 'https://yyazboard.onrender.com/sucesso?login=liberado'});
+    } else {
+        req.session.userId = AuthResult[2];
+        res.status(401).json({ sucess: true, RedirectTo: '/'});
+    };
 });
 
 app.listen(PORT, () => {

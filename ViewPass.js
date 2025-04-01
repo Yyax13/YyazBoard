@@ -5,12 +5,13 @@ function GetPass(UName) {
     (async () => {
         try {
             const [ rows ] = pool.query(
-                'SELECT UserName, UserPass FROM usuarios WHERE UserName = $1',
+                'SELECT ID, UserName, UserPass FROM usuarios WHERE UserName = $1',
                 [UName]
             );
             console.log(rows[0].UserName);
             console.log(rows[0].UserPass);
-            return rows
+            const [DataCatched] = [rows[0].UserName, rows[0].UserPass, rows[0].ID];
+            return DataCatched
         } catch(err) {
             console.error('ERRO: ', err);
         };
@@ -23,8 +24,12 @@ function Validate(UserInput, DataFromDB) {
         const PassFromDB = DataFromDB[0].UserPass;
 
         if (UserInput[0].Pass = PassFromDB) {
-            const AuthOutput = "Sucess";
+            const [AuthOutput] = [Authenticated = true, id = DataFromDB[0].ID];
             console.log('Sucesso, login efetuado!')
+            return AuthOutput
+        } else {
+            const [AuthOutput] = [Authenticated = false, id = null];
+            console.log('Tentativa de login invalida!')
             return AuthOutput
         };
     };
@@ -38,9 +43,12 @@ User Site Input needs to be:
 ]
 */
 
-function Main(UserSiteInput) {
+const MainFunc = function Main(UserSiteInput) {
     const SiteUName = UserSiteInput[0];
     const SiteUPass = UserSiteInput[1];
-    const DBData = GetPass();
-    const Auth = Validate(UserSiteInput, );
+    const DBData = GetPass(SiteUName);
+    const Auth = Validate(UserSiteInput, DBData);
+    return Auth
 };
+
+module.exports= MainFunc;
