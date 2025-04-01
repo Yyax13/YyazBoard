@@ -1,0 +1,69 @@
+:root {
+    --CorDeFundo: #1f1f1f;
+    --CorDoCard: #1f3d548b;
+    --Texto: #FFE9FF;
+    --Texto2:rgb(0, 4, 11);
+}
+
+body {
+    background-image: url(../assets/1330314.png);
+    background-size: cover;
+    color: var(--Texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: monospace;
+}
+
+.card {
+    background-color: var(--CorDoCard);
+    backdrop-filter: blur(4px);
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    box-shadow: 15px 17px 19px rgba(0, 0, 0, 0.4);
+}
+
+.card h1 {
+    margin-bottom: 20px;
+}
+
+.card input[type="text"],
+.card input[type="password"] {
+    border-radius: 3px;
+    border: none;
+    padding: 3px;
+    color: var(--Texto2);
+    background-color: #f5f5f5;
+    font-family: monospace;
+}
+
+.card label {
+    display: block;
+    text-align: start;
+    padding-left: 61px;
+    padding-bottom: 2px;
+}
+
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    color: #fff; 
+}
+.alert-success {
+    background-color: #4CAF50;
+    color: #fff;
+}
