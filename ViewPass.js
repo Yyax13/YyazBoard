@@ -1,19 +1,26 @@
 require('dotenv').config()
 const pool = require('./db')
 
-function GetPass(UName) {
+async function GetPass(UName) {
     (async () => {
         try {
             const [ rows ] = pool.query(
                 'SELECT ID, UserName, UserPass FROM usuarios WHERE UserName = $1',
                 [UName]
             );
-            console.log(rows[0].UserName);
-            console.log(rows[0].UserPass);
-            const [DataCatched] = [rows[0].UserName, rows[0].UserPass, rows[0].ID];
-            return DataCatched
+
+            if (rows === null) {
+                return null
+            };
+            return {
+                UserName: rows[0].UserName,
+                UserPass: rows[0].UserPass,
+                ID: rows[0].ID
+            }
+
         } catch(err) {
             console.error('ERRO: ', err);
+            throw err;
         };
     });
 };
@@ -23,14 +30,17 @@ function Validate(UserInput, DataFromDB) {
         const UserFromDB = DataFromDB[0].UserName;
         const PassFromDB = DataFromDB[0].UserPass;
 
-        if (UserInput[0].Pass = PassFromDB) {
-            const [AuthOutput] = [Authenticated = true, id = DataFromDB[0].ID];
-            console.log('Sucesso, login efetuado!')
-            return AuthOutput
+        if (!DataFromDB) {
+            console.log('User não encontrado');
+            return {Authenticated: false, id: null};
+        };
+
+        if (UserInput[0].Pass === PassFromDB) {
+            console.log('Sucesso, login efetuado!');
+            return {Authenticated: true, id: DataFromDB.ID};
         } else {
-            const [AuthOutput] = [Authenticated = false, id = null];
-            console.log('Tentativa de login invalida!')
-            return AuthOutput
+            console.log('Tentativa de login invalida!');
+            return {Authenticated: false, id: null};
         };
     };
 };
@@ -43,12 +53,14 @@ User Site Input needs to be:
 ]
 */
 
-const MainFunc = function Main(UserSiteInput) {
-    const SiteUName = UserSiteInput[0];
-    const SiteUPass = UserSiteInput[1];
-    const DBData = GetPass(SiteUName);
-    const Auth = Validate(UserSiteInput, DBData);
-    return Auth
+async function MainFunc(UserSiteInput) {
+    try {
+        const DBData = await GetPass(UserSiteInput.UName);
+        return Validate(UserSiteInput, DBData)
+    } catch (err) {
+        console.error(err);
+        return {Authenticated: false, id: null}
+    }
 };
 
 module.exports= MainFunc;

@@ -113,24 +113,28 @@ app.get('/api/cadastro', async (req, res) => {
 app.get('/sucesso', (req, res) => {
     const Acesso = req.query.login;
 
-    if (Acesso = 'liberado') {
-        res.status(200)
+    if (Acesso === 'liberado') {
+        res.status(200).send('Você conseguiu!')
     }
 })
 
 app.post('/api/validar', async (req, res) => {
-    const UserFromUser = req.body.user;
-    const PassFromUser = req.body.passwd;
+    try{
+        const {user: UName, passwd: UPass} = req.body;
 
-    const [FromUserData] = [UserFromUser, PassFromUser];
+        const AuthResult = await validatePass({UName, UPass});
 
-    const AuthResult = validatePass(FromUserData);
-    if (AuthResult[0]) {
-        req.session.userId = AuthResult[2];
-        res.status(200).json({ sucess: true, RedirectTo: 'https://yyazboard.onrender.com/sucesso?login=liberado'});
-    } else {
-        req.session.userId = AuthResult[2];
-        res.status(401).json({ sucess: true, RedirectTo: '/'});
+        if (AuthResult.Authenticated) {
+            req.session.userId = AuthResult[2];
+            res.status(200).json({ sucess: true, RedirectTo: 'https://yyazboard.onrender.com/sucesso?login=liberado', userId: AuthResult.id});
+        } else {
+            req.session.destroy();
+            res.status(401).json({ sucess: false, RedirectTo: '/', message: 'Falha no login, verifique as credenciais'});
+        };
+    } catch (err) {
+        console.error(err);
+        req.session.destroy();
+        res.status(500).json({message: 'Falha no servidor', sucess: false, RedirectTo: '/'})
     };
 });
 

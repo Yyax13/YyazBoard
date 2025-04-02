@@ -67,3 +67,20 @@ body {
     background-color: #4CAF50;
     color: #fff;
 }
+
+#login-button {
+    border-radius: 14px;
+    border: 0px solid #ccc;
+    padding: 8px;
+    background-color: #2a7bbd;
+    color: var(--Texto);
+}
+
+#login-button:hover {
+    transition: background-color 0.3s;
+    border-radius: 14px;
+    border: 0px solid #ccc;
+    padding: 8px;
+    background-color: #032d4e;
+    color: var(--Texto);
+}
