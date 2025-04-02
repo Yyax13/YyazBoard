@@ -32,15 +32,15 @@ function Validate(UserInput, DataFromDB) {
 
         if (!DataFromDB) {
             console.log('User não encontrado');
-            return {Authenticated: false, id: null};
+            return {Authenticated: false, id: null}
         };
 
         if (UserInput[0].Pass === PassFromDB) {
             console.log('Sucesso, login efetuado!');
-            return {Authenticated: true, id: DataFromDB.ID};
+            return {Authenticated: true, id: DataFromDB.ID}
         } else {
             console.log('Tentativa de login invalida!');
-            return {Authenticated: false, id: null};
+            return {Authenticated: false, id: null}
         };
     };
 };
