@@ -27,8 +27,8 @@ async function GetPass(UName) {
 
 function Validate(UserInput, DataFromDB) {
     if (UserInput) {
-        const UserFromDB = DataFromDB[0].UserName;
-        const PassFromDB = DataFromDB[0].UserPass;
+        const UserFromDB = DataFromDB.UserName;
+        const PassFromDB = DataFromDB.UserPass;
 
         if (!DataFromDB) {
             console.log('User não encontrado');
@@ -44,14 +44,6 @@ function Validate(UserInput, DataFromDB) {
         };
     };
 };
-
-/*
-User Site Input needs to be:
-[
-    'UName': 'Username here',
-    'UPass': 'User password here'
-]
-*/
 
 async function MainFunc(UserSiteInput) {
     try {
