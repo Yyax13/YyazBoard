@@ -47,14 +47,12 @@
                             messageDiv.value = 'Login efetuado com sucesso! Redirecionando ...';
                             location.href.value = data.RedirectTo;
                         } if (!data.sucess && data.message === 'NoAuth') {
-                            
-                        } if (condition) {
-                            
+                            console.log('Credenciais invalidas');
+                        } if (!data.sucess && !(data.message === 'NoAuth')) {
+                            console.log('bug no server');
                         } else {
-                            
-                        } {
-                            
-                        }
+                            console.log('bug no server');
+                        };
                     }
                 } catch (err) {
                     console.log(err)
