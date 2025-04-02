@@ -1,13 +1,13 @@
 require('dotenv').config(); //puxa dados do arquivo .env
-const axios = require('axios');
-const express = require('express');
-const session = require('express-session');
-const cors = require('cors');
-const path = require('path');
-const sanitizeHtml = require('sanitize-html');
-const pool = require('./db');
-const validatePass = require('./ViewPass');
-const { isNumberObject } = require('util/types');
+const axios = require('axios'); //instala axios para fazer requests
+const express = require('express'); //instala express para criar o servidor
+const session = require('express-session'); //instala express-session para gerenciar sessões
+const cors = require('cors'); //instala cors para permitir requisições de outros domínios
+const path = require('path'); //instala path para manipular caminhos de arquivos
+const sanitizeHtml = require('sanitize-html'); //instala sanitize-html para limpar entradas de HTML
+const pool = require('./db'); //instala pool para gerenciar conexões com o banco de dados
+const validatePass = require('./ViewPass'); //instala ViewPass para validar senhas
+const { isNumberObject } = require('util/types'); //instala isNumberObject para verificar se um valor é um objeto de número
 
 const app = express();
 app.use(cors());
@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3001;
 
 // Cookies
 
-app.use(session({
+app.use(session({ 
     secret: 'Segredo',
     resave: false,
     saveUninitialized: true,
@@ -42,6 +42,16 @@ app.get('/', (req, res) => {
 
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'))
+})
+
+app.get('/sucesso', (req, res) => {
+    const Acesso = req.query.login;
+
+    if (Acesso === 'liberado') {
+        res.status(200).send('Você conseguiu!')
+    } else {
+        res.status(401).send("<body style='background-color: green;'><div style='display: flex; align-items: center; justify-content: center;'><h1></h1></div></body>")
+    }
 })
 
 // Stand On
@@ -109,14 +119,6 @@ app.get('/api/cadastro', async (req, res) => {
         res.status(500).json({ mensagem: 'Ocorreu um erro durante o cadastro, consulte o console de desenvolvedor.', erro: err })
     }
 });
-
-app.get('/sucesso', (req, res) => {
-    const Acesso = req.query.login;
-
-    if (Acesso === 'liberado') {
-        res.status(200).send('Você conseguiu!')
-    }
-})
 
 app.post('/api/validar', async (req, res) => {
     try{
