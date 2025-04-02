@@ -34,7 +34,7 @@ function Validate(UserInput, DataFromDB) {
             return {Authenticated: false, id: null}
         };
 
-        if (UserInput[0].Pass === PassFromDB) {
+        if (UserInput.Pass === PassFromDB) {
             console.log('Sucesso, login efetuado!');
             return {Authenticated: true, id: DataFromDB.ID}
         } else {
