@@ -130,7 +130,7 @@ app.post('/api/validar', async (req, res) => {
         } else {
             req.session.destroy();
             console.log('Falha no login, verifique as credenciais')
-            res.status(401).json({ sucess: false, RedirectTo: '/', message: 'Falha no login, verifique as credenciais'});
+            res.status(401).json({ sucess: false, RedirectTo: '/', message: 'NoAuth'});
         };
     } catch (err) {
         console.error(err);
