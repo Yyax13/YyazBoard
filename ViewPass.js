@@ -27,8 +27,8 @@ async function GetPass(UName) {
 
 function Validate(UserInput, DataFromDB) {
     if (UserInput) {
-        const UserFromDB = DataFromDB[0].UName;
-        const PassFromDB = DataFromDB[0].UPass;
+        const UserFromDB = DataFromDB.UName;
+        const PassFromDB = DataFromDB.UPass;
 
         if (!DataFromDB) {
             console.log('User não encontrado');
