@@ -2,7 +2,6 @@ require('dotenv').config()
 const pool = require('./db')
 
 async function GetPass(UName) {
-    const resultado = (async () => {
         try {
             const [ rows ] = await pool.query(
                 'SELECT ID, UserName, UserPass FROM usuarios WHERE UserName = $1',
@@ -14,8 +13,8 @@ async function GetPass(UName) {
                 return null
             };
             return {
-                UserName: rows[0].UserName,
-                UserPass: rows[0].UserPass,
+                UName: rows[0].UserName,
+                UPass: rows[0].UserPass,
                 ID: rows[0].ID
             }
 
@@ -23,9 +22,6 @@ async function GetPass(UName) {
             console.error('ERRO: ', err);
             throw err;
         };
-    });
-    console.log(resultado);
-    return resultado
 };
 
 function Validate(UserInput, DataFromDB) {
