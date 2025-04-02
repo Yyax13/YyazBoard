@@ -103,7 +103,7 @@ app.get('/api/cadastro', async (req, res) => {
             'INSERT INTO usuarios (UserName, UserPass) VALUES ($1, $2) RETURNING ID',
             [username, userpassword]
         );
-        res.status(201).json({ id: rows[0].id });
+        res.status(201).json({ id: rows[0].id, UserName: rows[0].UserName, UserPass: rows[0].UserPass });
     } catch (err) {
         console.log(err);
         res.status(500).json({ mensagem: 'Ocorreu um erro durante o cadastro, consulte o console de desenvolvedor.', erro: err })
@@ -129,6 +129,7 @@ app.post('/api/validar', async (req, res) => {
             res.status(200).json({ sucess: true, RedirectTo: 'https://yyazboard.onrender.com/sucesso?login=liberado', userId: AuthResult.id});
         } else {
             req.session.destroy();
+            console.log('Falha no login, verifique as credenciais')
             res.status(401).json({ sucess: false, RedirectTo: '/', message: 'Falha no login, verifique as credenciais'});
         };
     } catch (err) {
