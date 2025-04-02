@@ -8,7 +8,8 @@ async function GetPass(UName) {
                 'SELECT ID, UserName, UserPass FROM usuarios WHERE UserName = $1',
                 [UName]
             );
-
+            console.log(rows[0].UserName);
+            console.log(rows.UserName);
             if (rows === null) {
                 return null
             };
