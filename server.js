@@ -74,7 +74,7 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
 })
 
 app.get('/api/consulta/:id', async (req,res) => {
-    const uid = Numer(req.params.id);
+    const uid = Number(req.params.id);
     
     if (isNumberObject(uid)){
         (async () => {
@@ -125,7 +125,7 @@ app.post('/api/validar', async (req, res) => {
         const AuthResult = await validatePass({UName, UPass});
 
         if (AuthResult.Authenticated) {
-            req.session.userId = AuthResult[2];
+            req.session.userId = AuthResult.id;
             res.status(200).json({ sucess: true, RedirectTo: 'https://yyazboard.onrender.com/sucesso?login=liberado', userId: AuthResult.id});
         } else {
             req.session.destroy();
