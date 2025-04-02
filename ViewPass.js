@@ -3,7 +3,7 @@ const pool = require('./db')
 
 async function GetPass(UName) {
         try {
-            const [ rows ] = await pool.query(
+            const { rows } = await pool.query(
                 'SELECT ID, UserName, UserPass FROM usuarios WHERE UserName = $1',
                 [UName]
             );
