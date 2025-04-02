@@ -49,6 +49,7 @@ function Validate(UserInput, DataFromDB) {
 async function MainFunc(UserSiteInput) {
     try {
         const DBData = await GetPass(UserSiteInput.UName);
+        console.log(DBData);
         return Validate(UserSiteInput, DBData)
     } catch (err) {
         console.error(err);
