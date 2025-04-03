@@ -46,11 +46,11 @@ app.get('/login', (req, res) => {
 
 app.get('/sucesso', (req, res) => {
     const Acesso = req.query.login;
-
+    
     if (Acesso === 'liberado') {
-        res.status(200).send('Você conseguiu!')
+        res.status(200).sendFile(path.join(__dirname, 'public', 'sucesso.html'));
     } else {
-        res.status(401).send("<body style='background-color: green;'><div style='display: flex; align-items: center; justify-content: center;'><h1></h1></div></body>")
+        res.status(404);
     }
 })
 
