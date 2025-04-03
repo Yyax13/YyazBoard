@@ -18,7 +18,7 @@
                 <br>
                 <button id="login-button" type="submit">Login</button>
             </form>
-            <div id="message" style="margin-top: 15px; color: red;"></div>
+            <div id="message" style="margin-top: 15px; color: white;"></div>
         </div>
         <script>
             document.getElementById('login-form').addEventListener('submit', async function (e) {
@@ -44,9 +44,11 @@
 
                     if (response.ok) {
                         if (data.sucess) {
+                            messageDiv.style.color = 'green';
                             messageDiv.innerText = 'Login efetuado com sucesso! Redirecionando ...';
                             location.href = data.RedirectTo; // Corrigido
                         } else if (!data.sucess && data.message === 'NoAuth') {
+                            messageDiv.style.color = 'red';
                             messageDiv.innerText = 'Credenciais inválidas. Tente novamente.';
                         } else {
                             messageDiv.innerText = 'Erro no servidor. Tente novamente mais tarde.';
