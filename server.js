@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'))
-})
+});
 
 app.get('/sucesso', (req, res) => {
     const Acesso = req.query.login;
@@ -52,13 +52,17 @@ app.get('/sucesso', (req, res) => {
     } else {
         res.status(404);
     }
-})
+});
+
+app.get('/cadastro', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, 'public', 'cadastro.html'))
+});
 
 // Stand On
 
 app.get('/StandOn', (req, res) => {
     res.status(200).json({ Status: 'ON', Mensagem: 'COD 200'})
-})
+});
 
 // APIs
 
@@ -81,7 +85,7 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
           await pool.end();
         }
       })();
-})
+});
 
 app.get('/api/consulta/:id', async (req,res) => {
     const uid = Number(req.params.id);
@@ -103,8 +107,8 @@ app.get('/api/consulta/:id', async (req,res) => {
         }
 });
 
-app.get('/api/cadastro', async (req, res) => {
-    const { uname, upass } = req.query;
+app.post('/api/cadastro', async (req, res) => {
+    const { uname, upass } = req.body;
     const username = clearHTML(uname);
     const userpassword = clearHTML(upass)
 
@@ -128,7 +132,7 @@ app.post('/api/validar', async (req, res) => {
 
         if (AuthResult.Authenticated) {
             req.session.userId = AuthResult.id;
-            res.status(200).json({ sucess: true, RedirectTo: 'https://yyazboard.onrender.com/sucesso?login=liberado', userId: AuthResult.id});
+            res.status(200).json({ sucess: true, RedirectTo: 'https://yyazboard.onrender.com/cadastro', userId: AuthResult.id});
         } else {
             req.session.destroy();
             console.log('Falha no login, verifique as credenciais')
