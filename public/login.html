@@ -47,7 +47,7 @@
                             messageDiv.style.color = 'green';
                             messageDiv.innerText = 'Login efetuado com sucesso! Redirecionando ...';
                             location.href = data.RedirectTo; // Corrigido
-                        } if (!data.sucess && data.message === 'NoAuth') {
+                        } if (data.message === 'NoAuth') {
                             messageDiv.style.color = 'red';
                             messageDiv.innerText = 'Credenciais inválidas. Tente novamente.';
                         } else {
