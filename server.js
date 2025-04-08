@@ -91,7 +91,7 @@ app.get('/api/consulta', async (req, res) => {
     const uid = req.query.id;
 
     try {
-        const query = `SELECT ID, UserName FROM usuarios WHERE ID = ${uid}`;
+        const query = `SELECT * FROM usuarios WHERE ID = ${uid}`;
         const { rows } = await pool.query(query);
 
         if (rows.length === 0) {
