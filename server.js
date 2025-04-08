@@ -87,24 +87,23 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
       })();
 });
 
-app.get('/api/consulta/:id', async (req,res) => {
-    const uid = Number(req.params.id);
-    
-    if (isNumberObject(uid)){
+app.get('/api/consulta', async (req,res) => {
+    const uid = Number(req.query.id);
+
         (async () => {
             try {
-                const { rows } = await pool.query(
-                    'SELECT ID, UserName FROM usuarios WHERE ID = $1',
-                    [uid]
-                );
+                const query = ("SELECT ID, UserName FROM usuarios WHERE ID =", uid)
+                const { rows } = await pool.query(query);
+//                const { rows } = await pool.query(
+//                    'SELECT ID, UserName FROM usuarios WHERE ID = $1',
+//                    [uid]
+//                );
                 res.status(201).json({ dados: rows[0] });
             } catch(err) {
                 console.error("Ocorreu um erro durante a consulta: ", err)
                 res.status(500).json({ mensagem: 'Ocorreu um erro durante a consulta, verifique o console.', erro: err })
-            }
-        })();} else {
-            res.status(500).json({ mensagem: "Para a consulta ocorrer, o id deve ser um número inteiro diferente de 0"})
-        }
+            };
+        });
 });
 
 app.post('/api/cadastro', async (req, res) => {
