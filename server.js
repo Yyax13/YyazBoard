@@ -91,8 +91,9 @@ app.get('/api/consulta', async (req, res) => {
     const uid = req.query.id;
 
     try {
-        const query = `SELECT * FROM usuarios WHERE ID = ${uid}`;
-        const { rows } = await pool.query(query);
+    //    const query = `SELECT * FROM usuarios WHERE ID = ${uid}`;
+    const query = `SELECT * FROM usuarios WHERE ID = $1`;
+        const { rows } = await pool.query(query, uid);
 
         if (rows.length === 0) {
             return res.status(404).json({ mensagem: 'Usuário não encontrado.' });
