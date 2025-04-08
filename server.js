@@ -98,7 +98,7 @@ app.get('/api/consulta', async (req, res) => {
             return res.status(404).json({ mensagem: 'Usuário não encontrado.' });
         }
 
-        res.status(200).json({ dados: rows[0] });
+        res.status(200).json({ dados: rows });
     } catch (err) {
         console.error("Ocorreu um erro durante a consulta: ", err);
         res.status(500).json({
