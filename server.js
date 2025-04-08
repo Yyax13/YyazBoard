@@ -88,7 +88,7 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
 });
 
 app.get('/api/consulta', async (req,res) => {
-    const uid = Number(req.query.id);
+    const uid = req.query.id;
 
         (async () => {
             try {
