@@ -87,24 +87,27 @@ app.get('/database/admin/criar/tabela', async (req, res) => {
       })();
 });
 
-app.get('/api/consulta', async (req,res) => {
+app.get('/api/consulta', async (req, res) => {
     const uid = req.query.id;
 
-        (async () => {
-            try {
-                const query = ("SELECT ID, UserName FROM usuarios WHERE ID =", uid)
-                const { rows } = await pool.query(query);
-//                const { rows } = await pool.query(
-//                    'SELECT ID, UserName FROM usuarios WHERE ID = $1',
-//                    [uid]
-//                );
-                res.status(201).json({ dados: rows[0] });
-            } catch(err) {
-                console.error("Ocorreu um erro durante a consulta: ", err)
-                res.status(500).json({ mensagem: 'Ocorreu um erro durante a consulta, verifique o console.', erro: err })
-            };
+    try {
+        const query = ('SELECT ID, UserName FROM usuarios WHERE ID = ', uid);
+        const { rows } = await pool.query(query);
+
+        if (rows.length === 0) {
+            return res.status(404).json({ mensagem: 'Usuário não encontrado.' });
+        }
+
+        res.status(200).json({ dados: rows[0] });
+    } catch (err) {
+        console.error("Ocorreu um erro durante a consulta: ", err);
+        res.status(500).json({
+            mensagem: 'Ocorreu um erro durante a consulta, verifique o console.',
+            erro: err
         });
+    }
 });
+
 
 app.post('/api/cadastro', async (req, res) => {
     const { uname, upass } = req.body;
