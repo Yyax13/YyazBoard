@@ -114,7 +114,7 @@ new TypingText(document.getElementById("example2"), 150, function(i){ var ar = n
 TypingText.runAll();
 </script>
 </body>`);
-};
+});
 
 app.get('/', (req, res) => {
     res.send(`
