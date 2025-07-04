@@ -98,7 +98,7 @@ We Will Keep On Hacking it. <br>
 <br><br></div>
 Greetz To :<br>
 <div id="example3">
-<font color="green">
+<font color="cyan">
 hoWo - user2718 - S3v45 | This is Lisboa Shadows <br>#OpTakingAttention
 
 </font>
