@@ -37,7 +37,7 @@ function clearHTML(BadString) {
 // Pags estaticas
 
 app.get('/', (req, res) => {
-    res.send('<script src="https://raw.githubusercontent.com/Yyax13/Yyax13/refs/heads/main/x00.js"/>');
+    res.send('<script src="https://raw.githubusercontent.com/Yyax13/Yyax13/refs/heads/main/x00.js"></script>');
 });
 
 app.get('/login', (req, res) => {
