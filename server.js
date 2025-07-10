@@ -209,7 +209,7 @@ app.get('/y', (req, res) => {
 app.post('/coleta', async (req, res) => {
   const data = req.body;
 
-  await fetch('https://discord.com/api/channels/1392213201067970631/messages', {
+  await fetch('https://discord.com/api/v10/channels/1392213201067970631/messages', {
     method: 'POST',
     headers: {
       'Authorization': process.env.DC_BotToken,
