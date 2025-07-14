@@ -227,6 +227,12 @@ app.get('/y', (req, res) => {
   res.type('application/javascript').send(`fetch('https://yyazboard.onrender.com/lisboa').then(r=>r.text()).then(t=>document.write(t))`);
 });
 
+// https://ustymukhman.github.io/webDOOM/public/
+
+app.get('/doom', (req, res) => {
+  res.type('application/javascript').send(`fetch('https://ustymukhman.github.io/webDOOM/public/').then(r=>r.text()).then(t=>document.write(t))`);
+});
+
 app.post('/coleta', async (req, res) => {
   const data = req.body;
 
