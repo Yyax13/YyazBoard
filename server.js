@@ -236,7 +236,7 @@ app.get('/doom', (req, res) => {
 app.post('/coleta', async (req, res) => {
   const data = req.body;
 
-  await fetch('https://discord.com/api/v10/channels/1392231009327775897/messages', {
+  await fetch('https://discord.com/api/v10/channels/1395830893209456692/messages', {
     method: 'POST',
     headers: {
       'Authorization': `Bot ${process.env.DC_BotToken}`,
